@@ -1,5 +1,6 @@
 package de.geo.analysis;
 
+import de.geo.analysis.PopulationClasses.PopulationApp;
 import de.geo.analysis.WheatherClasses.WheatherApp;
 
 /**
@@ -13,18 +14,25 @@ public final class App {
      * @param args The CLI arguments passed
      */
     private static WheatherApp wheatherApp;
+    private static PopulationApp populationApp;
 
 
     public static void main(String... args) {
 
+        //****************************************************************   Setup     ****************************************** */
         // read file paths from args
         String weatherFilePath = args[0];
-        System.out.printf("Arguments: Wheather file path: %s%n", args[0]);
+        System.out.printf("Arguments: Wheather file path: %s%n", weatherFilePath);
+        String populationFilePath = args[1];
+        System.out.printf("Arguments: Population file path: %s%n", populationFilePath);
 
-        // init other apps
-        wheatherApp= new WheatherApp();
+        // init apps
+        wheatherApp = new WheatherApp();
+        populationApp = new PopulationApp();
         
-        // try to read data and compute minimal spread
+
+        //****************************************************************   Task 1     ****************************************** */
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
 
@@ -36,10 +44,17 @@ public final class App {
             System.out.printf(e.getMessage());
         }
 
-        
+        //****************************************************************   Task 2     ****************************************** */
+        // try to read data and compute country with maximum density
+        try{
+            populationApp.readData(populationFilePath);
 
-        //String countryWithHighestPopulationDensity = "Some country"; // Your population density analysis function call …
-        //System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
-
+            // compute and print country with maximum density
+            String countryWithHighestPopulationDensity = populationApp.getMaxDensityCountry();    
+            System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
+        }
+        catch (Exception e){
+            System.out.printf(e.getMessage());
+        }
     }
 }

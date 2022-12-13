@@ -21,11 +21,11 @@ class WeatherAppTest {
 
     @Test
     void normalFileTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather.csv";
         
         String dayWithSmallestTempSpread = "";
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
 
@@ -40,10 +40,10 @@ class WeatherAppTest {
 
     @Test
     void missingFileTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weatherabc.csv";
         
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);   
         }
@@ -58,10 +58,10 @@ class WeatherAppTest {
 
     @Test
     void emptyFileTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather_empty.csv";
         
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);   
         }
@@ -75,11 +75,11 @@ class WeatherAppTest {
 
     @Test
     void emptyLineSameSpreadTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather_empty_line.csv";
         
         String dayWithSmallestTempSpread = "";
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
 
@@ -94,11 +94,11 @@ class WeatherAppTest {
 
     @Test
     void ErrorLineSameSpreadTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather_error_line.csv";
         
         String dayWithSmallestTempSpread = "";
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
 
@@ -113,10 +113,10 @@ class WeatherAppTest {
 
     @Test
     void DataLoadedTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather.csv";
         
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
             int daysAmt = wheatherApp.getWheaterDayAmt(); 
@@ -130,10 +130,10 @@ class WeatherAppTest {
 
     @Test
     void emptyFileNoDataLoadedTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather_empty.csv";
 
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
             int daysAmt = wheatherApp.getWheaterDayAmt(); 
@@ -146,10 +146,10 @@ class WeatherAppTest {
 
     @Test
     void emptyLineDataLoadedTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather_empty_line.csv";
         
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
             int daysAmt = wheatherApp.getWheaterDayAmt(); 
@@ -162,10 +162,10 @@ class WeatherAppTest {
 
     @Test
     void ErrorLineDataLoadedTest() {
-        // read file paths from args
+        
         String weatherFilePath = "src\\main\\resources\\de\\geo\\analysis\\weather_error_line.csv";
         
-        // try to read data and compute minimal spread
+        // try to read data and compute day with minimal spread
         try{
             wheatherApp.readData(weatherFilePath);
             int daysAmt = wheatherApp.getWheaterDayAmt(); 

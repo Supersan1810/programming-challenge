@@ -5,45 +5,43 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVParserBuilder;
 
 import de.geo.analysis.Interfaces.CSVToObj;
 
 public abstract class CSVInitReader{
     
-    // idea from https://www.geeksforgeeks.org/reading-csv-file-java-using-opencsv/
-    public static void readAndInit(String filepath, CSVToObj csvToObj, boolean skipFirstLine) throws IOException{
+    // idea from https://www.geeksforgeeks.org/reading-csv-file-java-using-opencsv/, 
+    // extended with documentation from von https://opencsv.sourceforge.net/apidocs/
+    public static void readAndInit(String filepath, CSVToObj csvToObj, int skipLines, char separator) throws IOException{
         System.out.printf("Reading data from: %s%n", filepath);
 
         // read data with CSV reader
         try {
-        
-            // Create an object of filereader
-            // class with CSV file as a parameter.
-            FileReader filereader = new FileReader(filepath);
-            
-        
-            // create csvReader object passing
-            // file reader as a parameter
-            CSVReader csvReader = new CSVReader(filereader);
+            // create parser with chosen seperator, add to reader
+            final CSVParser parser =
+                new CSVParserBuilder()
+                    .withSeparator(separator)
+                    .build();
+            final CSVReader csvReader =
+                new CSVReaderBuilder(new FileReader(filepath))
+                    .withCSVParser(parser)
+                    .withSkipLines(skipLines)       // skip header lines 
+                    .build();
+
             String[] nextRecord;
         
-            // we are going to read data line by line
-            boolean firstLine = true;
+            //read data line by line
             while ((nextRecord = csvReader.readNext()) != null) {
-
-                // some csv files contain header line, then it needs to be skipped
-                if (skipFirstLine & firstLine){
-                    firstLine = false;
-                }
-                else{
-                    // init object in interface implementation, further handling of object there
-                    csvToObj.lineToObject(nextRecord);
-                }
-                
-                
+                // init object in interface implementation, further handling of object there
+                csvToObj.lineToObject(nextRecord);             
             }
+
             csvReader.close();
         }
+        
         catch (Exception e) {
             if (e instanceof FileNotFoundException){
                 throw new FileNotFoundException("Input file not found!");

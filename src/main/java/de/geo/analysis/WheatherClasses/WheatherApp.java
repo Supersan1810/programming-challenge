@@ -1,27 +1,26 @@
 package de.geo.analysis.WheatherClasses;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import de.geo.analysis.CSVInitReader;
-import de.geo.analysis.Interfaces.CSVToObj;
+import de.geo.analysis.ThirdPartyApp;
 
-public class WheatherApp implements CSVToObj {
+public class WheatherApp extends ThirdPartyApp {
     ArrayList<WheatherDay> days;
 
     public WheatherApp(){
         days = new ArrayList<WheatherDay>();
     }
 
-    public void readData(String filepath)throws IOException{
+    public void readData(String filepath)throws Exception{
         // read data with CSV reader
-        CSVInitReader.readAndInit(filepath, this, true);
+        CSVInitReader.readAndInit(filepath, this, 1,',');
         System.out.printf("Wheater data loaded\n");
     }
 
     public String getMinSpreadDay() throws Exception{
         if (days.size() == 0){
-            throw new Exception("No wheather data given!");
+            throw new Exception("No wheather data given!\n");
         }
         WheatherDay minSpreadDay = days.get(0);
         float minSpread = minSpreadDay.getSpread();
@@ -45,14 +44,14 @@ public class WheatherApp implements CSVToObj {
     @Override
     public void lineToObject(String[] data) {
         try{
-        // init wheather day object from String array
-        String date = data[0];
-        float maxTemp = Float.parseFloat(data[1]);
-        float minTemp = Float.parseFloat(data[2]);
-        WheatherDay day = new WheatherDay(date, maxTemp, minTemp);
+            // init wheather day object from String array
+            String date = data[0];
+            float maxTemp = Float.parseFloat(data[1]);
+            float minTemp = Float.parseFloat(data[2]);
+            WheatherDay day = new WheatherDay(date, maxTemp, minTemp);
 
-        // add object to arraylist
-        days.add(day);
+            // add object to arraylist
+            days.add(day);
         }
         catch (Exception e){
             System.out.println("Error while reading in line!");
