@@ -1,4 +1,4 @@
-package de.bcxp.challenge;
+package de.geo.analysis;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

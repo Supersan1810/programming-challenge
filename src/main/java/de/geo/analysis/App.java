@@ -1,4 +1,4 @@
-package de.bcxp.challenge;
+package de.geo.analysis;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -19,5 +19,6 @@ public final class App {
 
         String countryWithHighestPopulationDensity = "Some country"; // Your population density analysis function call …
         System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
+
     }
 }

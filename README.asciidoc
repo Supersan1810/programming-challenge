@@ -1,6 +1,11 @@
 // custom properties
 :url-repo: https://github.com/bettercodepaul/programming-challenge
 
+= Project structure
+* Implementation in folder: src/main/java/de/geo/analysis
+* Classes for first task in folder: WheatherClasses
+* UML diagram for first task: uml_weather.png
+
 = BettercallPaul programming challenge
 
 This repository provides the project scaffold for a simple
