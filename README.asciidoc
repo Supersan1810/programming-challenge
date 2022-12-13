@@ -2,11 +2,13 @@
 :url-repo: https://github.com/bettercodepaul/programming-challenge
 
 = Project structure
-* Implementation in folder: src/main/java/de/geo/analysis
+
 * Classes for first task in folder: WheatherClasses
 * UML diagram for first task: uml_weather.png
+* UML diagram for second task: uml_weather_and_population.png
 
 = Used Libraries:
+
 * opencsv.CSVReader for reading in the lines of the csv file
 
 = BettercallPaul programming challenge
